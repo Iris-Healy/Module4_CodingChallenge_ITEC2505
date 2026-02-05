@@ -1,0 +1,44 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Dad Joke Generator";
+}
+<!-- create div with bootstrap styling-->
+<div class="card text-bg-info mb-3">
+    <h1 class="text-center">🤣Dad Joke Generator🤣</h1>
+<!-- create card that lists jokes from SmallSelectedJokes-->
+    <div class="card mt-4">
+        <div class = "card-body">
+            <h5>Jokes</h5>
+            <ul class = "list-group">
+                <!-- loop through array of SmallSelectedJokes and display all values-->
+                @for (int i = 0; i < Model.SmallSelectedJokes.Length; i++)
+                {
+                    <li class = "list-group-item"> @Model.SmallSelectedJokes[i]</li>
+                }
+            </ul>
+            <!-- create a button that links to method post-->
+            <form method= "post">
+            <button type="submit" class="btn btn-primary"> See More Jokes!</button>
+            </form>
+        </div>
+    </div>
+    <!-- Check if ShowResults = true-->
+    @if(Model.ShowResults)
+    {
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5>More Jokes</h5>
+                <ul class = "list-group">
+                 @for (int i = 0; i < Model.LargeSelectedJokes.Length; i++)
+                 {
+                    <li class = "list-group-item"> @Model.LargeSelectedJokes[i]</li>
+                 }
+                </ul>
+            </div>
+        </div>
+    }
+</div>
+<!-- There is a current bug with the small jokes on the page disapearing when the new jokes are generated unsure why this is my best guess is it has something to do with 
+The SelectedValues resize?
+
